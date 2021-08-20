@@ -12,5 +12,9 @@ class Smartphone (
    
 ```
 
+    We could use the delegate to pass the implementation to another class
+
+  
+
 
 
