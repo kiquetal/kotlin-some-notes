@@ -9,14 +9,16 @@ class MyFunc {
 }
 
 class myF {
+    lateinit var value:String
     companion object {
-        operator fun invoke(f:String.()->String ) {
-            val r =f(String())
-            var m = String().f().uppercase()
-            println("some black magic and ${r}");
-            println(m)
+        operator fun invoke(f:myF.()->Unit ) {
+            val n = myF().apply(f)
+            // println(n.runSomeString())
+            f(myF())
+
         }
     }
+    fun runSomeString(s:String="some binding")= "recibi ${value}-${s}"
 }
 
 fun main(args:Array<String>)
@@ -25,6 +27,8 @@ fun main(args:Array<String>)
     m("http://mygoal");
 
     myF {
-        "it looks like a constructor"
+        value="myData"
+        println(runSomeString())
+        println("que hay")
     }
 }
