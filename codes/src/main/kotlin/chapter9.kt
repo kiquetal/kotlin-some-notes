@@ -1,40 +1,25 @@
-interface Dialable {
-    fun dial(): Unit
+package chapter9;
+
+import java.io.BufferedReader
+import java.io.File
+import java.util.function.Consumer
+
+class chapter9 {
+
 }
+fun main(args:Array<String>)
+{
+    val toWrite = File("hola.txt");
 
-interface Snapable {
-
-    fun snap(): Unit
-}
-
-class IPhone : Dialable {
-    override fun dial() {
-        println("some iphone dial")
+    toWrite.printWriter().use { toWrite->
+          toWrite.println("hola+que hay");
+          toWrite.println(String.format("%s %s","esto es asi: ","vamos"))
     }
 
-}
+    toWrite.bufferedReader().forEachLine { println(it) }
+    toWrite.bufferedReader().lines().forEach { s -> println(s) }
 
-class Phone : Dialable {
-    override fun dial() {
-        println("some generic dial")
-    }
+    toWrite.bufferedReader().use { bufferedReader: BufferedReader ->
+        bufferedReader.lines().forEach { println(it) } }
 
-}
-
-class Camera : Snapable {
-    override fun snap() {
-        println("some snap")
-    }
-
-}
-
-class Smartphone(
-    private val phone: Dialable,
-    private val camera: Snapable
-) : Dialable by phone, Snapable by camera
-
-
-fun main(args: Array<String>) {
-    val m = Smartphone(IPhone(), Camera())
-    println(m.dial())
 }
