@@ -21,6 +21,21 @@ class myF {
     fun runSomeString(s:String="some binding")= "recibi ${value}-${s}"
 }
 
+class startApp{
+
+
+    val data="myPrecious"
+    companion object {
+
+        operator fun invoke(s:startApp.()->Unit) {
+
+            startApp().s()
+        }
+    }
+}
+
+
+
 fun main(args:Array<String>)
 {
     val m=MyFunc()
@@ -30,5 +45,9 @@ fun main(args:Array<String>)
         value="myData"
         println(runSomeString())
         println("que hay")
+    }
+
+    startApp {
+        println(data)
     }
 }
